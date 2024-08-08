@@ -9,7 +9,7 @@ on:
       - main
       - dev
   release:
-    types: ['published']
+    types: ['created']
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
 
   publish-npm:
     needs: build
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: github.event_name == 'release' && github.event.action == 'created'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
