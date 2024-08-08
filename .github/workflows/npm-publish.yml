@@ -15,9 +15,12 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish
+      - name: Install dependencies
+        run: npm ci
+      - name: Build project
+        run: npm run build
+      - name: Publish to npm
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
@@ -27,15 +30,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: Create GitHub Release
-        uses: actions/create-release@v1
+        run: |
+          node -e "
+          const fs = require('fs');
+          const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          const tagName = `v${packageJson.version}`;
+          console.log(`Creating release with tag: ${tagName}`);
+          const { execSync } = require('child_process');
+          execSync(`gh release create ${tagName} --title 'Release ${tagName}' --notes 'Changes in this release:\n- List your changes here'`);
+          "
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        with:
-          tag_name: ${{github.ref}}
-          release_name: Release ${{github.ref}}
-          body: |
-            Changes in this release:
-            - List your changes here
-          draft: false
-          prerelease: false
