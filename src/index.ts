@@ -1,4 +1,3 @@
-import VueSelect from './HVTest.vue'
-import '@/style/index.scss'
+import HVTest from '@/HVTest.vue'
 
-export { VueSelect }
+export { HVTest }
