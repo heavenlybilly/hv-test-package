@@ -1,0 +1,41 @@
+{
+  "name": "hv-test-package",
+  "description": "Test package",
+  "version": "0.0.1",
+  "license": "MIT",
+  "homepage": "https://github.com/heavenlybilly/hv-test-package",
+  "main": "dist/hv-test-package.umd.js",
+  "module": "dist/hv-test-package.es.js",
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/node": "^22.1.0",
+    "@vitejs/plugin-vue2": "^2.3.1",
+    "prettier": "^3.3.3",
+    "sass": "^1.39.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.3.5",
+    "vite-plugin-dts": "^4.0.0-beta.2",
+    "vue-tsc": "^2.0.29"
+  },
+  "peerDependencies": {
+    "vue": "2.7"
+  },
+  "keywords": ["vue", "select", "component", "vue-component", "vue2", "vue-select"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heavenlybilly/hv-test-package.git"
+  },
+  "bugs": {
+    "url": "https://github.com/heavenlybilly/hv-test-package/issues"
+  },
+  "author": {
+    "name": "Sergei Spitsin",
+    "email": "heavenlybilly@hmail.com"
+  }
+}
