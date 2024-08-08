@@ -5,7 +5,7 @@ export default defineComponent({
   name: 'HVTest',
   props: {
     value: {
-      type: Array,
+      type: Number,
       required: true,
     },
   },
