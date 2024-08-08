@@ -38,6 +38,7 @@ desktop.ini
 # git files
 .git
 .gitignore
+.github
 
 # miscellaneous
 *.bak
