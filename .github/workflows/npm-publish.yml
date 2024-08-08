@@ -8,8 +8,6 @@ on:
     branches:
       - main
       - dev
-  release:
-    types: ['created']
 
 jobs:
   build:
@@ -24,7 +22,7 @@ jobs:
 
   publish-npm:
     needs: build
-    if: github.event_name == 'release' && github.event.action == 'created'
+    if: github.event_name == 'pull_request' && github.head_ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -37,3 +35,23 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+  publish-release:
+    needs: publish-npm
+    if: github.event_name == 'pull_request' && github.head_ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          tag_name: ${{github.ref}}
+          release_name: Release ${{github.ref}}
+          body: |
+            Changes in this release:
+            - List your changes here
+          draft: false
+          prerelease: false
