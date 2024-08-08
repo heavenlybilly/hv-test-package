@@ -3,10 +3,11 @@ name: Node.js Package
 on:
   pull_request_target:
     types: [closed]
+    branches:
+      - main
 
 jobs:
   publish-npm:
-    if: github.event.pull_request.merged == true && github.base_ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +23,6 @@ jobs:
 
   publish-release:
     needs: publish-npm
-    if: github.event.pull_request.merged == true && github.base_ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
