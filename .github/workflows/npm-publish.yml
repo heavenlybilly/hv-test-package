@@ -4,11 +4,12 @@
 name: Node.js Package
 
 on:
-  push:
+  pull_request:
     branches:
       - main
+      - dev
   release:
-    types: [created]
+    types: ['published']
 
 jobs:
   build:
@@ -23,6 +24,7 @@ jobs:
 
   publish-npm:
     needs: build
+    if: github.event_name == 'release' && github.event.action == 'published'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
