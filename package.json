@@ -1,7 +1,7 @@
 {
   "name": "hv-test-package",
   "description": "Test package",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "homepage": "https://github.com/heavenlybilly/hv-test-package",
   "main": "dist/hv-test-package.umd.js",
