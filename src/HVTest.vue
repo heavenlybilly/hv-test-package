@@ -25,7 +25,7 @@ export default defineComponent({
 <template>
   <div class="wrapper">
     <div class="value"><b>Счетчик значений:</b> {{ value }}</div>
-    <button @click="handleInc">Увеличить</button>
+    <button @click="handleInc">Увеличить значение</button>
   </div>
 </template>
 
